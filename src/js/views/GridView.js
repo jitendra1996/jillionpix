@@ -1,0 +1,51 @@
+export class GridView {
+  #SPACING = 5;
+
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.canvas.setAttribute("width", 1500);
+    this.canvas.setAttribute("height", 10000);
+    this.ctx = this.canvas.getContext("2d");
+    this.bbox = this.canvas.getBoundingClientRect();
+    this.width = Math.floor(this.canvas.width);
+    this.height = Math.floor(this.canvas.height);
+    this.ctx.strokeStyle = "#000";
+    this.ctx.lineWidth = 0.5;
+    this.drawGrid();
+  }
+
+  horizontalLines() {
+    while (this.height >= 0) {
+      this.ctx.beginPath();
+      this.ctx.moveTo(0, this.height);
+      this.ctx.lineTo(this.canvas.width, this.height);
+      this.ctx.stroke();
+      this.height -= this.#SPACING;
+    }
+  }
+
+  verticalLines() {
+    while (this.width >= 0) {
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.width, 0);
+      this.ctx.lineTo(this.width, this.canvas.height);
+      this.ctx.stroke();
+      this.width -= this.#SPACING;
+    }
+  }
+
+  drawGrid() {
+    this.ctx.clearRect(0, 0, this.bbox.width, this.bbox.height);
+    this.horizontalLines();
+    this.verticalLines();
+  }
+
+  windowToCanvas(x, y) {
+    return {
+      x: x - this.bbox.left * (this.canvas.width / this.bbox.width),
+      y: y - this.bbox.top * (this.canvas.height / this.bbox.height),
+    };
+  }
+}
+
+

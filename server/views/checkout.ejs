@@ -1,0 +1,39 @@
+<%- include('includes/header.ejs') %>
+<%- include('includes/nav.ejs' , { path : path , sold : sold , left : left}) %>
+    <div class="checkout__container">
+      <div class="product">
+        <img
+        src="/<%= user.image %>"
+        alt="Image"
+        />
+      </div>
+      <div class="description">
+          <ul>
+            <li>
+              <h1><%= user.username %></h1>
+            </li>
+            <li>
+              <%= user.email %>
+            </li>
+            <li>
+              <%= user.currency %>
+            </li>
+                <li><%= user.links[0] %></li>
+                <li><%= user.links[1] %></li>
+            <li>
+              pixels : <%= user.pixels %>
+            </li>
+            <li>
+              price :<%= symbol %> <%= user.price %>
+            </li>
+          </ul>
+          <form action="/checkout" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" id="checkout-button">Checkout</button>
+          </form>
+        </div>
+    </div>
+  </body>
+  <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+</html>
