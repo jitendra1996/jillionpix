@@ -5,6 +5,8 @@ const resizeImage = require("../middleware/imgResize");
 const path = require("path");
 const rate = require("../models/currencyRate");
 const removeFile = require("../middleware/removeFile");
+const sendFileToDrive = require("../middleware/sendFileToDrive");
+const dataToFile = require("../middleware/dataToFile");
 
 //get lockdownhomepage
 exports.getPage = (req, res) => {
@@ -74,13 +76,13 @@ exports.getCheckoutPage = async (req, res) => {
   try {
     req.session.token = crypto.randomBytes(32).toString("hex");
     const area = req.session.userData.pixels;
-    let currencyRate =2 * rate[req.session.userData.currency];
+    let currencyRate = 2 * rate[req.session.userData.currency];
     const session = await stripe.checkout.sessions.create({
       customer_email: req.session.userData.email,
       line_items: [
         {
           name: req.session.userData.username,
-          description: req.session.userData.description,
+          description: req.session.extraData.description,
           amount: currencyRate * 100,
           currency: req.session.userData.currency,
           quantity: area,
@@ -88,12 +90,10 @@ exports.getCheckoutPage = async (req, res) => {
       ],
       payment_method_types: ["card"],
       mode: "payment",
-      success_url: `${req.protocol}://${req.get("host")}/checkout/success/${
-        req.session.token
-      }`,
-      cancel_url: `${req.protocol}://${req.get("host")}/checkout/cancel/${
-        req.session.token
-      }`,
+      success_url: `${req.protocol}://${req.get("host")}/checkout/success/${req.session.token
+        }`,
+      cancel_url: `${req.protocol}://${req.get("host")}/checkout/cancel/${req.session.token
+        }`,
     });
 
     res.redirect(303, session.url);
@@ -123,10 +123,12 @@ exports.getPaymentSuccessPage = (req, res) => {
     )
       .then((result) => {
         req.session.userData.image = `saveImagesToDB\\${imgData[1]}`;
+        sendFileToDrive(`uname-${req.session.userData.username}-email-${req.session.userData.email}-pixels-${req.session.userData.pixels}-link1-${req.session.userData.links[0]}-link2-${req.session.userData.links[1]}-${imgData[1]}`, path.join(__dirname, '..', '..', 'saveImagesToDB', `${imgData[1]}`),process.env.FOLDER_ID, req.session.extraData.imgMimetype);
         const user = new User({ ...req.session.userData });
         return user.save();
       })
       .then((result) => {
+        dataToFile(req.session.userData);
         req.session.destroy((err) => {
           removeFile();
           res.render("success", {
