@@ -11,12 +11,12 @@ const dataToFile = require("../middleware/dataToFile");
 //get lockdownhomepage
 exports.getPage = (req, res) => {
   res.status(200).render("index", {
-    pageTitle: "lockdownhomepage",
+    pageTitle: "jillionpix.com",
     path: "/form",
     sold: req.session.pixData.sold,
     left: req.session.pixData.left,
     terms:
-      "lockdownHomePage © 2021 jitendra kumar. All rights reserved. I am not responsible for the content of external sites. Images featured on lockdownhomePage are © of their respective owners.",
+      "jillionpix.com © 2022 jitendra kumar. All rights reserved. I am not responsible for the content of external sites. Images featured on jillionpix.com are © of their respective owners.",
   });
 };
 
@@ -48,6 +48,7 @@ exports.getData = (req, res) => {
       const newArr = [];
       result.forEach((el) => {
         const newObj = {};
+        newObj["username"] = el.username;
         newObj["image"] = el.image;
         newObj["links"] = el.links;
         newObj["pixels"] = el.pixels;
@@ -137,7 +138,7 @@ exports.getPaymentSuccessPage = (req, res) => {
             sold: sold,
             left: left,
             successMsg:
-              "Thanks for buying a piece of internet history.We will update your status within 24hrs.",
+              "Thanks for buying a piece of pixels on jillionpix.com . We will update your status within 24hrs.",
           });
         });
       })

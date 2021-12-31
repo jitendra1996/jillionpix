@@ -309,7 +309,7 @@ ul.nav__list{
 }
 
 .canvas__container{
-    width: 99%;
+    width: 100%;
     height: 88vh;
     margin: 1rem auto;
     overflow-y: scroll;
@@ -333,19 +333,104 @@ ul.nav__list{
 
 /*----------------------------------- ending of canvas styling ------------------------------------*/
 /*----------------------------------------- popup styling -----------------------------------------*/
-.popUp{
+#backdrop{
+    width: 100%;
+    height: fit-content;
+    position: absolute;
     z-index: 1000;
-    padding: 1rem;
-    border: .1rem solid #545454;
-    border-radius: 1rem;
-    background: #f9f9f9;
+    opacity: .9;
+    display: none;
+    background-color: #000;
+    cursor: pointer;
+    padding: 2rem;
 }
 
-.popUp a{
+.popUpImage{
+    width: 50%;
+    height: 85vh;
+    display: inline;
+    float: left;
+    text-align: center;
+    padding: 2rem;
+}
+
+.popUpImage img{
+    width: 50%;
+    margin-top: 15rem ;
+}
+
+.popUpLink{
+    width: 50%;
+    padding: 2rem;
+    text-align: center;
+    height: 85vh;
+    display: inline;
+    float: left;
+    overflow: hidden;
+}
+.popUpLink a:active ,
+.popUpLink a:visited,
+.popUpLink a{
     color: cornflowerblue;
     text-align: center;
     text-decoration: none;
     font-family: sans-serif;
+    font-size: 2rem;
+    display: block;
+}
+
+.popUpLink p{
+    margin-top: 15rem;
+}
+
+@media screen and (max-width : 720px ){
+    #backdrop{
+        width: 100%;
+        height: fit-content;
+        position: absolute;
+        z-index: 1000;
+        opacity: .9;
+        display: none;
+        background-color: #000;
+        cursor: pointer;
+        padding: 2rem;
+    }
+    
+    .popUpImage{
+        width: 100%;
+        height: fit-content;
+        display: block;
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .popUpImage img{
+        width: 50%;
+        margin-top: 1rem ;
+    }
+    
+    .popUpLink{
+        width: 100%;
+        padding: 2rem;
+        text-align: center;
+        height: fit-content;
+        display: block;
+        overflow: hidden;
+    }
+    .popUpLink a:active ,
+    .popUpLink a:visited,
+    .popUpLink a{
+        color: cornflowerblue;
+        text-align: center;
+        text-decoration: none;
+        font-family: sans-serif;
+        font-size: 2rem;
+        display: block;
+    }
+    
+    .popUpLink p{
+        margin-top: 1rem;
+    }       
 }
 
 /*------------------------------------ popUp styling end ------------------------------------------*/

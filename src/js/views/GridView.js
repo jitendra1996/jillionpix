@@ -3,8 +3,8 @@ export class GridView {
 
   constructor(canvas) {
     this.canvas = canvas;
-    this.canvas.setAttribute("width", 1500);
-    this.canvas.setAttribute("height", 10000);
+    this.canvas.setAttribute("width", window.innerWidth);
+    this.canvas.setAttribute("height", 15000000/(window.innerWidth));
     this.ctx = this.canvas.getContext("2d");
     this.bbox = this.canvas.getBoundingClientRect();
     this.width = Math.floor(this.canvas.width);

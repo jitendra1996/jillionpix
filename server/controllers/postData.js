@@ -67,7 +67,7 @@ exports.postData = (req, res) => {
   const currSymbole = currencyData.filter((el) => el.isoCode === currency);
   const imgMimetype = image.mimetype;
   req.session.userData = {...data };
-  req.session.extraData = {imgMimetype , description : 'Thanks for owning a piece of lockdownhomepage'}
+  req.session.extraData = {imgMimetype , description : 'Thanks for owning a piece of jillionpix.com'}
   res.render("checkout", {
     path: "/noform",
     pageTitle: "your details",

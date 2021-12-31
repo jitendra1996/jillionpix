@@ -7,5 +7,6 @@ export const elements = {
     form_details : document.getElementById('form_details'),
     cancelBtn : document.getElementById('cancelBtn'),
     pixels : document.getElementById('pixels'),
-    dimension : document.getElementById('dimension')
+    dimension : document.getElementById('dimension'),
+    canvas_container : document.getElementById("canvas__container")
 };
