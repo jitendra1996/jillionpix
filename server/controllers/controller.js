@@ -67,7 +67,7 @@ exports.getData = (req, res) => {
         errmsg: "Page Not Found!!!",
         sold: req.session.pixData.sold,
         left: req.session.pixData.left,
-        path: "/noform",
+        path: "/noform",  
       });
     });
 };
@@ -79,6 +79,7 @@ exports.getCheckoutPage = async (req, res) => {
     const area = req.session.userData.pixels;
     let currencyRate = 2 * rate[req.session.userData.currency];
     const session = await stripe.checkout.sessions.create({
+      submit_type : "donate",
       customer_email: req.session.userData.email,
       line_items: [
         {
@@ -118,6 +119,7 @@ exports.getPaymentSuccessPage = (req, res) => {
     const imgData = req.session.userData.image.split("\\");
     let sold = req.session.pixData.sold;
     let left = req.session.pixData.left;
+    console.log(req.session.userData.image);
     resizeImage(
       path.join(__dirname, "..", "..", `${imgData[0]}`, `${imgData[1]}`),
       imgData[1]
