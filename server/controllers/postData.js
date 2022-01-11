@@ -33,6 +33,7 @@ exports.postData = (req, res) => {
         pageTitle: "fill your details",
         hasError: true,
         path: "/noform",
+        newPath:'/about',
         sold: req.session.pixData.sold,
         left: req.session.pixData.left,
         errormsg: errors.array(),
@@ -70,6 +71,7 @@ exports.postData = (req, res) => {
   req.session.extraData = {imgMimetype , description : 'Thanks for owning a piece of jillionpix.com'}
   res.render("checkout", {
     path: "/noform",
+    newPath:'/about',
     pageTitle: "your details",
     user: data,
     symbol: currSymbole[0].symbol.toLowerCase(),
@@ -77,10 +79,3 @@ exports.postData = (req, res) => {
     left: req.session.pixData.left,
   });
 };
-
-
-
-
-
-
-

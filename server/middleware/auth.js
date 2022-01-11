@@ -6,6 +6,7 @@ module.exports = (req, res, next) => {
       sold : req.session.pixData.sold,
       left : req.session.pixData.left,
       path: "/noform",
+      newPath:"/about"
     });
   }
   next();

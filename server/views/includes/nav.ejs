@@ -1,11 +1,31 @@
-<div class="header">
-    <span class="logo">jillionpix.com</span>
-  <ul class="nav__list">
-    <li>15000000 pixels</li>
-    <li>1px = $2</li>
-    <li>sold = <span id="soldPixels"><%= sold %></span></li>
-    <li>left = <span id="leftPixels"><%= left %></span></li>
+<!-- mobile navigation menu -->
+<div class="mobo_menu" id="mobo_menu">
+  <div class="close_nav_container">
+    <span class="mobo__logo"> <a href="/">jillionpix</a></span>
+    <button class="close_nav" id="close_nav"></button>
+  </div>
+  <ul>
+    <span id="mobo_price__details">
+      <hr>
+      <li>15000000 pixels</li>
+      <hr>
+      <li>1px = $2</li>
+    <hr>
+      <li>sold = <span id="soldPixels"><%= sold %></span></li>
+      <hr>
+      <li>left = <span id="leftPixels"><%= left %></span></li>
+    </span>
+    <hr>
+    <li class="mobo_about_link" id="mobo_about">
+      <% if(newPath === '/about'){ %>
+        <a href="/about">About</a>
+        <%} else{%>
+          <a href="/">Home</a>
+        <% } %>
+    </li>
+    <hr>
     <li><a class="twitter-follow-button" href="https://twitter.com/jcoolkumar">support</a></li>
+    <hr>
     <li>
       <% if(path === '/form'){ %>
         <a href="/details" id="buyBtn">buy</a>
@@ -13,6 +33,41 @@
         <a href="/">Home</a>  
       <% } %>
     </li>
+    <hr>     
+  </ul>
+</div>
+
+
+<!-- web navigation menu  -->
+<div class="header">
+    <span class="logo"><a href="/">jillionpix</a></span>
+    <button class="mob__nav" id="mobo"></button>
+  <ul class="nav__list">
+    <span id="price__details">
+      <li>15000000 pixels</li>
+      <li>1px = $2</li>
+    </span>
+    <span id="pixels__details">
+      <li>sold = <span id="soldPixels"><%= sold %></span></li>
+      <li>left = <span id="leftPixels"><%= left %></span></li>
+    </span>
+    <span id="nav__btn">
+      <li class="about_link" id="about">
+        <% if(newPath === '/about'){ %>
+        <a href="/about">About</a>
+        <%} else{%>
+          <a href="/">Home</a>
+        <% } %>
+      </li>
+      <li><a class="twitter-follow-button" href="https://twitter.com/jcoolkumar">support</a></li>
+      <li>
+        <% if(path === '/form'){ %>
+          <a href="/details" id="buyBtn">buy</a>
+        <%} else {%>
+          <a href="/">Home</a>  
+        <% } %>
+      </li>
+    </span>
   </ul>
 </div>
 

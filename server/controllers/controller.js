@@ -5,7 +5,6 @@ const resizeImage = require("../middleware/imgResize");
 const path = require("path");
 const rate = require("../models/currencyRate");
 const removeFile = require("../middleware/removeFile");
-const sendFileToDrive = require("../middleware/sendFileToDrive");
 const dataToFile = require("../middleware/dataToFile");
 
 //get lockdownhomepage
@@ -13,6 +12,7 @@ exports.getPage = (req, res) => {
   res.status(200).render("index", {
     pageTitle: "jillionpix.com",
     path: "/form",
+    newPath:"/about",
     sold: req.session.pixData.sold,
     left: req.session.pixData.left,
     terms:
@@ -26,6 +26,7 @@ exports.formPage = (req, res) => {
     pageTitle: "fill your details",
     hasError: false,
     path: "/noform",
+    newPath:"/about",
     sold: req.session.pixData.sold,
     left: req.session.pixData.left,
     errormsg: "",
@@ -67,7 +68,8 @@ exports.getData = (req, res) => {
         errmsg: "Page Not Found!!!",
         sold: req.session.pixData.sold,
         left: req.session.pixData.left,
-        path: "/noform",  
+        path: "/noform",
+        newPath:"/about"  
       });
     });
 };
@@ -91,6 +93,7 @@ exports.getCheckoutPage = async (req, res) => {
         },
       ],
       payment_method_types: ["card"],
+      // automatic_payment_methods : {enabled : true},
       mode: "payment",
       success_url: `${req.protocol}://${req.get("host")}/checkout/success/${req.session.token
         }`,
@@ -105,6 +108,7 @@ exports.getCheckoutPage = async (req, res) => {
     res.status(400).render("error", {
       pageTitle: "Error",
       path: "/noform",
+      newPath:"/about",
       sold: sold,
       left: left,
       errmsg: "Network connection error",
@@ -119,14 +123,12 @@ exports.getPaymentSuccessPage = (req, res) => {
     const imgData = req.session.userData.image.split("\\");
     let sold = req.session.pixData.sold;
     let left = req.session.pixData.left;
-    console.log(req.session.userData.image);
     resizeImage(
       path.join(__dirname, "..", "..", `${imgData[0]}`, `${imgData[1]}`),
-      imgData[1]
+      `${req.session.userData.username}-${imgData[1]}`
     )
       .then((result) => {
-        req.session.userData.image = `saveImagesToDB\\${imgData[1]}`;
-        sendFileToDrive(`uname-${req.session.userData.username}-email-${req.session.userData.email}-pixels-${req.session.userData.pixels}-link1-${req.session.userData.links[0]}-link2-${req.session.userData.links[1]}-${imgData[1]}`, path.join(__dirname, '..', '..', 'saveImagesToDB', `${imgData[1]}`),process.env.FOLDER_ID, req.session.extraData.imgMimetype);
+        req.session.userData.image = `saveImagesToDB\\${req.session.userData.username}-${imgData[1]}`;
         const user = new User({ ...req.session.userData });
         return user.save();
       })
@@ -137,6 +139,7 @@ exports.getPaymentSuccessPage = (req, res) => {
           res.render("success", {
             pageTitle: "success",
             path: "/noform",
+            newPath:"/about",
             sold: sold,
             left: left,
             successMsg:
@@ -148,6 +151,7 @@ exports.getPaymentSuccessPage = (req, res) => {
         res.status(400).render("error", {
           pageTitle: "Error",
           path: "/noform",
+          newPath:"/about",
           sold: sold,
           left: left,
           errmsg: "Page Not Found!!!",
@@ -157,6 +161,7 @@ exports.getPaymentSuccessPage = (req, res) => {
     res.status(400).render("error", {
       pageTitle: "Error",
       path: "/noform",
+      newPath:"/about",
       sold: sold,
       left: left,
       errmsg: "Page Not Found!!!",
@@ -171,6 +176,7 @@ exports.getCancelPage = (req, res) => {
     res.status(400).render("error", {
       pageTitle: "Error",
       path: "/noform",
+      newPath:"/about",
       sold: req.session.pixData.sold,
       left: req.session.pixData.left,
       errmsg: "server error!!!",
@@ -179,6 +185,7 @@ exports.getCancelPage = (req, res) => {
     res.status(400).render("error", {
       pageTitle: "Error",
       path: "/noform",
+      newPath:"/about",
       sold: req.session.pixData.sold,
       left: req.session.pixData.left,
       errmsg: "server error!!!",

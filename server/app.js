@@ -87,11 +87,12 @@ app.use(route);
 
 app.get("*", (req, res) => {
   res.status(404).render("error", {
-    errmsg: "Page Not Found!!!",
+    errmsg: "Server error!!!",
     pageTitle: "Error",
     sold: req.session.pixData.sold,
     left: req.session.pixData.left,
     path: "/noform",
+    newPath:"/about"
   });
 });
 

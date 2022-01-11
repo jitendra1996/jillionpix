@@ -10,7 +10,7 @@ path , sold : sold , left : left}) %>
   <% } %>
   <form method="post" id="form_details" enctype="multipart/form-data">
     <div>
-      <label for="name">business name</label>
+      <label for="name">business name*</label>
       <input
         type="text"
         class="<%=validationError.find(e=>e.param==='name')?'invalid':''%>"
@@ -20,7 +20,7 @@ path , sold : sold , left : left}) %>
       />
     </div>
     <div>
-      <label for="emailId">email Id</label>
+      <label for="emailId">email Id*</label>
       <input
         type="email"
         name="email"
@@ -30,7 +30,7 @@ path , sold : sold , left : left}) %>
       />
     </div>
     <div class="select__currency">
-      <label for="currency">Currency</label>
+      <label for="currency">Currency*</label>
       <select name="currency" id="currency">
         <option value="usd" selected>US Dollar</option>
       
@@ -309,7 +309,7 @@ path , sold : sold , left : left}) %>
       </select>
     </div>
     <div class="dimentions">
-      <label for="pixels">pixels</label>
+      <label for="pixels">pixels*</label>
       <input
         type="number"
         name="pixels"
@@ -317,9 +317,10 @@ path , sold : sold , left : left}) %>
         id="pixels"
         value="<%= oldData.pixels %>"
       />
+      <p>*buy pixels in multiples of 25 and don't use prime numbers.if you want to know , how to choose correct amount of pixels <a href="/about">Go to About</a> section.</p>
     </div>
     <div>
-      <label for="image">Image <span>(max-file-size : 500kb)</span></label>
+      <label for="image">Image* <span>(max-file-size : 500kb)</span></label>
       <input
         type="file"
         name="image"
@@ -328,7 +329,7 @@ path , sold : sold , left : left}) %>
       />
     </div>
     <div>
-      <label for="links">social media / website links <span>(optional)</span></label>
+      <label for="links">social media / website links* </label>
       <input
         type="url"
         name="_1"
@@ -343,6 +344,7 @@ path , sold : sold , left : left}) %>
         value="<%= oldData._2 %>"
       />
     </div>
+    <p>* required</p>
     <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
     <button class="submitbtn" type="submit">Submit</button>
     <a href="/" class="submitbtn" id="cancelBtn">Cancel</a>
@@ -350,5 +352,6 @@ path , sold : sold , left : left}) %>
 </div>
 </body>
 <script src="./js/filedetails.js"></script>
+<script src="./js/menu.js"></script>
 </html>
   

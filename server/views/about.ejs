@@ -1,0 +1,111 @@
+<%- include('includes/header.ejs') %> 
+<%- include('includes/nav.ejs', {path : path , sold : sold , left : left}) %>
+<div class="about__container">
+  <h2>About jillionpix.com</h2>
+  <div class="primary__content">
+    <h3>Welcome to jillionpix.com</h4>
+      <div class="primary__content-para">
+        <p>
+            jillionpix.com is a place where you can buy any amount of pixels between 1 to 15 million for life-time by paying less amount 
+            $2/pixels to promote your brand and 
+            have a little space on jillionpix.com , be a part of our jillionairs community.
+        </p>
+        <p>We will be glad to have you with us.</p>
+      </div>
+  </div>
+  <div class="pixels__info__content">
+    <h3>pixels calculator</h3>
+    <div id="trial__container">
+     <h4>Check Here,are you choosing correct amount of pixels for your brand or not.</h4> 
+     <p>*buy pixels in multiple of 25 because 1 block contain 25pixels. </p>
+      <div class="input__box">
+       <p>
+         <label for="pix">Enter amount of pixels</label>
+          <input type="number" name="pix" id="pix" placeholder="pixels">
+       </p> 
+       <p>
+         <label for="width">width</label>
+         <input type="text" name="width" id="width" placeholder="width" disabled>
+       </p>
+       <p>
+         <label for="height">height</label>
+         <input type="text" name="height" id="height" placeholder="height" disabled>
+       </p>
+       <p>
+         <label for="boxes">number of matrix blocks</label>
+         <input type="text" name="boxes" id="boxes" placeholder="blocks" disabled>
+       </p>
+       <p>
+         <label for="rows">number of rows</label>
+         <input type="text" name="rows" id="rows" placeholder="rows" disabled>
+       </p>
+       <p>
+         <label for="cols">number of columns</label>
+         <input type="text" name="cols" id="cols" placeholder="columns" disabled>
+       </p>
+        <button id="checkBtn">Check</button>
+      </div>
+      <div class="canvas__element">
+        <canvas id="check__canvas" width="300" height="150">Not supported!!!</canvas>
+      </div>
+    </div>
+  </div>
+  <div class="pixels__secondary-content">
+    <h3>Pixels information</h3>
+    <div class="img-container">
+      <div class="img1_container">
+        <img src="./img/pixels.png" alt="pixels" class="img1">
+      </div>
+      <div class="img2_container">
+        <img src="./img/rowscols.png" alt="rows and columns" class="img2">
+      </div>
+    </div>
+    <div class="img-container2">
+      <div class="img3_container">
+        <img src="./img/block.png" alt="block details" class="img3">
+      </div>
+      <div class="img4_container">
+        <img src="./img/pixdetails.png" alt="pixels details" class="img4">
+      </div>
+    </div>
+    <div class="contents__container">
+      <ol>
+        <li>total number of pixels = 15000000 or 15 million.</li>
+        <li>total number of blocks = 600000 blocks.</li>
+        <li>block is one box in a grid which we can see in yellow or purple color on above figures.</li>
+        <li>1unit = 1pixel = 1/25th of a single block.</li>
+        <li>1 block = 5px width x 5px height.</li>
+        <li>number of blocks = total number of pixels  /  25 .</li>
+        <li>number of rows = total height / 5 .</li>
+        <li>number of columns = total width / 5 .</li>
+      </ol>
+    </div>
+    <div class="example__container">
+      <h3>example</h3>
+      <p>suppose you want to buy 500 pixels .</p>
+      <div class="example__images-container">
+        <img src="./img/500px.png" alt="original 500 pixels image">
+        <img src="./img/500pixelsrc.png" alt="scalable image of 500 pixels" class="imgeg">
+      </div>
+      <div class="example__content-container">
+        <ol>
+          <li>total number of blocks contained in 500 pixels.</li>
+          <p>formula : number of blocks = total number of pixels / 25 .</p>
+          <p>therefore , no. of blocks = 500 / 25 = 20 blocks.</p>
+          <li>to calculate width and height you can use pixel calculator.</li>
+          <p>width = 20 px .</p>
+          <p>height = 25 px .</p>
+          <li>So , rows and columns in 500 pixels .</li>
+          <p>formula : total number of rows =  total height / 5 .</p>
+          <p>no. of rows = 25 / 5 = 5 columns .</p>
+          <p>formula : total number of columns = total width / 5 .</p>
+          <p>no. of columns = 20 / 5 = 4 columns . </p>
+          <li>By using these details , you will be able to find out how will your pixels should look on main home screen of the jillionpix.com .</li>
+          <p class="imp">*If you're facing any issues like making a payment or buying a pixel, let us know at <a href="https://twitter.com/jcoolkumar">Support</a>&nbsp;section.</p>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="./js/pixeltrial.js"></script>
+<%- include('includes/footer.ejs') %>

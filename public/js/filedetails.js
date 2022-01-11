@@ -7,3 +7,22 @@ imgdetails.addEventListener('change', e => {
   }
 });
 
+const pixels = document.getElementById("pixels");
+
+pixels.addEventListener("change" , e =>{
+  e.preventDefault();
+  if(isPrime(e.target.value)){
+    alert('pixels should not be prime number. choose another number');
+    pixels.value = "";   
+  }
+});
+
+
+function isPrime(num){
+  for(let i = 2 ; i < num ; i++){
+      if(num % i === 0){
+          return false;
+      }
+  }
+  return true;
+}

@@ -1,14 +1,16 @@
 export class GridView {
   #SPACING = 5;
+  #AXIS_MARGIN = 20;
 
   constructor(canvas) {
     this.canvas = canvas;
-    this.canvas.setAttribute("width", window.innerWidth);
-    this.canvas.setAttribute("height", 15000000/(window.innerWidth));
+    this.canvas.setAttribute("width", document.documentElement.clientWidth);
+    this.canvas.setAttribute("height", Math.ceil(15000000/document.documentElement.clientWidth));
     this.ctx = this.canvas.getContext("2d");
+    // this.ctx.scale(1,1);
     this.bbox = this.canvas.getBoundingClientRect();
-    this.width = Math.floor(this.canvas.width);
-    this.height = Math.floor(this.canvas.height);
+    this.width = this.canvas.width;
+    this.height =this.canvas.height;
     this.ctx.strokeStyle = "#000";
     this.ctx.lineWidth = 0.5;
     this.drawGrid();

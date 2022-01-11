@@ -5,10 +5,22 @@ const controllerPost = require("../controllers/postData");
 const isAuth = require("../middleware/auth");
 const { check, body } = require("express-validator");
 const imgAuth = require("../middleware/imgAuth");
+const checkPrime = require("../middleware/checkprime");
 // const imgResize = require("../middleware/imgResize");
 
 //show index.ejs page
 router.get("/", controller.getPage);
+
+//show about page to screen
+router.get("/about",(req,res)=>{
+  res.status(200).render('about',{
+    pageTitle: "About",
+    path: "/form",
+    newPath:'/noAbout',
+    sold: req.session.pixData.sold,
+    left: req.session.pixData.left,
+  });
+})
 
 //details page get router
 router.get("/details", controller.formPage);
@@ -23,6 +35,8 @@ router.post(
   body("pixels").custom((value) => {
     if (value <= 0) {
       throw new Error("pixels should be greater than 0 and integer value.");
+    }else if(checkPrime(value)){
+      throw new Error('pixels should not be prime number.');
     }
     return true;
   }),

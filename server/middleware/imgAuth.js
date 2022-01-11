@@ -20,6 +20,7 @@ module.exports = (req, res, next) => {
     pageTitle: "details",
     hasError: true,
     path: "/noform",
+    newPath:"/about",
     sold: req.session.pixData.sold,
     left: req.session.pixData.left,
     errormsg: imgError,
