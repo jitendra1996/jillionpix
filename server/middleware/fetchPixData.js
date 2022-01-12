@@ -5,7 +5,7 @@ module.exports = (req,res,next) => {
       const sold = result.reduce((prev, curr) => {
         return prev + curr.pixels;
       }, 0);
-      let left = 15000000 - sold;
+      let left = 2200000 - sold;
       req.session.pixData = {
         sold,
         left,

@@ -1,6 +1,6 @@
 <%- include('includes/header.ejs') %> <%- include('includes/nav.ejs' , { path :
 path , sold : sold , left : left}) %>
-<div class="form" id="form">
+<div class="form" id="form" data-nosnippet>
   <% if (hasError) { %>
   <div class="error" id="error">
     <% for(const val of errormsg){ %>
@@ -317,6 +317,7 @@ path , sold : sold , left : left}) %>
         id="pixels"
         value="<%= oldData.pixels %>"
       />
+      <p class="imp">*you can only buy less than or equal to 5000 pixels at a time,if you want to buy more pixels , let us know in the <a href="https://twitter.com/jcoolkumar">support</a> section.</p>
       <p>*buy pixels in multiples of 25 and don't use prime numbers.if you want to know , how to choose correct amount of pixels <a href="/about">Go to About</a> section.</p>
     </div>
     <div>

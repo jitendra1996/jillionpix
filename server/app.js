@@ -78,8 +78,12 @@ app.use(
 );
 app.use(csrfProtection);
 app.use((req, res, next) => {
-  res.locals.csrfToken = req.csrfToken();
-  next();
+  try{
+    res.locals.csrfToken = req.csrfToken();
+    next();
+  }catch(err){
+    res.send("csrf error hello");
+  }
 });
 app.use(pixelData);
 

@@ -64,10 +64,19 @@ window.onload = function () {
 
 
 
+const width = window.innerWidth;
+console.log(width);
 
 //change screen view on window resizing 
 window.onresize = function (e) {
-  window.location.href = '/';
+  if(width !== window.innerWidth){
+    console.log('i\'m from onresize');
+    console.log(window.innerWidth);
+    console.log(window.innerHeight);
+    console.log(document.documentElement.clientWidth);
+    console.log(document.documentElement.clientHeight);
+    window.location.href = '/';
+  }
 }
 
 
@@ -123,3 +132,8 @@ function whenClicked(e, grid, croodData) {
   });
 };
 
+window.addEventListener('orientationchange',e=>{
+  e.preventDefault();
+  console.log(e);
+  console.log(window.orientation);
+})
